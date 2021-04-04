@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { interval, Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import { fromEvent } from 'rxjs'; 
+import { map, buffer, filter, debounceTime } from 'rxjs/operators';
 
 import DisplayComponent from './Components/Display';
 import BtnComponent from './Components/Btn';
@@ -44,45 +46,15 @@ const handleWait = () => {
 }
 
 const handleReset = () => {
+  handleStop();
+  handleStart();
+}
+
+const handleStop = () => {
   setTime(0);
   setWatchOn(false);
   setStatus(0);
 }
- /*
-  const start = () => {
-    run();
-    setStatus(1);
-    setInterv(setInterval(run, 1000))
-  }
-  var updatedS = time.s, 
-      updatedM = time.m,
-      updatedH = time.h;
-  
-  const run = () => {
-    if(updatedM === 60) {
-      updatedH++;
-      updatedM = 0;
-    }
-    if(updatedS === 60) {
-      updatedM++;
-      updatedS = 0;
-    }
-    updatedS++;
-    return setTime({s:updatedS, m:updatedM, h:updatedH});
-  }
-
-  const stop = () => {
-    clearInterval(interv)
-    setStatus(2);
-  }
-  const reset = () => {
-    clearInterval(interv)
-    setStatus(0);
-    setTime({s:0, m:0, h:0});
-  }
-
-  const resume = () => start()
- */
 
   return (
     <div className="main-section">
@@ -95,6 +67,7 @@ const handleReset = () => {
             wait = {handleWait} 
             resume = {handleResume} 
             start= {handleStart}
+            stop= {handleStop}
           />
         </div>
       </div>
