@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { interval, Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
-import { fromEvent } from 'rxjs'; 
-import { map, buffer, filter, debounceTime } from 'rxjs/operators';
 
 import DisplayComponent from './Components/Display';
 import BtnComponent from './Components/Btn';
