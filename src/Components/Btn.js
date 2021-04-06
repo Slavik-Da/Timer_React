@@ -34,5 +34,4 @@ function Btn({ start, stop, wait, reset, resume, status}) {
     </div>
   );
 }
-
 export default Btn;
